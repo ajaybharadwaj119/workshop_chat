@@ -79,34 +79,7 @@ public class MembersActivity extends AppCompatActivity {
 
        // loadMembersList();
     }
-   /* private void loadMembersList() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            String currentUserId = currentUser.getUid();
 
-            mDatabase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    GenericTypeIndicator<List<User>> userType = new GenericTypeIndicator<List<User>>() {};
-                    List<User> allUsers = dataSnapshot.getValue(userType);
-
-                    if (allUsers != null) {
-                        for (User user : allUsers) {
-                            // Assuming user.getUserId() retrieves the user's ID
-                            if (!user.getUserId().equals(currentUserId)) {
-                                userList.add(user);
-                            }
-                        }
-                        displayUserList();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle any errors
-                }
-            });
-        }*/
 
     private void displayUserList() {
         adapter = new MembersAdapter(userList);

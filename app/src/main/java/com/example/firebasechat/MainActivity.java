@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("924497866393-77laee4c2brs0b0kape7vr0f2duldguk.apps.googleusercontent.com")
+                .requestIdToken("")
                 .requestEmail().build();
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -72,29 +72,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = googleSignInClient.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
     }
-
-/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
-                try {
-
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
-
-                    firebaseAuth(account.getIdToken());
-
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
-        }
-    }
-*/
 
 
     @Override

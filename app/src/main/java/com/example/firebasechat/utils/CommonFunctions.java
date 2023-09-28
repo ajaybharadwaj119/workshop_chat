@@ -100,72 +100,6 @@ public class CommonFunctions {
         return granted;
 }
 
-   /* public static void showDatePickerMinMaxDate(Activity activity, String defaultDate, String minDate, String maxDate, final String tag, final MyDateSelectedListener myDateSelectedListener) {
-
-
-        Calendar calendar = Calendar.getInstance();
-        *//*try {*//*
-        if (!defaultDate.equals("") && !defaultDate.equalsIgnoreCase("0000-00-00")) {
-            String[] date = defaultDate.split("-");
-
-           *//* calendar.set(Calendar.YEAR, Integer.parseInt(date[0]));
-            calendar.set(Calendar.MONTH, Integer.parseInt(date[1]));
-            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date[2]));*//*
-            try {
-                calendar.setTime(DataFormats.dateFormatDbDate.parse(defaultDate));
-            } catch (java.text.ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.YEAR, year);
-                myDateSelectedListener.onDateSet(tag, calendar, calendar.getTime());
-            }
-        };
-        DatePickerDialog aDatePickerDialog = new DatePickerDialog(
-                activity, onDateSetListener,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-        );
-
-        try {
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String currentDateandTime = sdf.format(new Date());
-
-            //minDate =currentDateandTime;
-            if (!minDate.equals("") && !minDate.equalsIgnoreCase("0000-00-00")) {
-                Log.e("minDatee",minDate);
-
-
-                long dateMin = DataFormats.dateFormatDbDate.parse(currentDateandTime).getTime();
-                aDatePickerDialog.getDatePicker().setMinDate(dateMin);
-
-            }
-           *//* if (!maxDate.equals("") && !maxDate.equalsIgnoreCase("0000-00-00")) {
-                long dateMax = DataFormats.dateFormatDbDate.parse(maxDate).getTime();
-                aDatePickerDialog.getDatePicker().setMaxDate(dateMax);
-            }*//*
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        DialogUtils.setButtonTextColor(activity, aDatePickerDialog);
-        ArrayList<View> views = aDatePickerDialog.getDatePicker().getTouchables();
-        if (views != null && views.size() > 0)
-            aDatePickerDialog.getDatePicker().getTouchables().get(0).performClick();
-        aDatePickerDialog.show();
-        *//*} catch (ParseException e) {
-            Log.i("catchcc", e.getMessage());
-            e.printStackTrace();
-        }*//*
-
-    }*/
 
 
     public static void writeAPIResponse(String data, Context context) {
@@ -174,13 +108,7 @@ public class CommonFunctions {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
             String time = format.format(calendar.getTime());
-/*
-            final File path =
-                    Environment.getExternalStoragePublicDirectory
-                            (
-                                    //Environment.DIRECTORY_PICTURES
-                                    Environment.DIRECTORY_DOCUMENTS + "/SnapayAPI/"
-                            );*/
+
             File path = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS + "/SnapayAPI/");
             // Make sure the path directory exists.
             if (!path.exists()) {
@@ -198,10 +126,7 @@ public class CommonFunctions {
                 file.createNewFile();
                 FileOutputStream fOut = new FileOutputStream(file);
                 fOut.write(data.getBytes());
-                /*OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-                myOutWriter.append(data);
 
-                myOutWriter.close();*/
 
                 fOut.flush();
                 fOut.close();
@@ -273,79 +198,6 @@ public class CommonFunctions {
         String[] msgArray = msg.split(" ");
         return msgArray[1];
     }
-
-/*
-    public static void showDatePickerMinMaxDate(Activity activity, String defaultDate, String minDate, String maxDate, final String tag, final MyDateSelectedListener myDateSelectedListener) {
-        Calendar calendar = Calendar.getInstance();
-
-        try {
-            if (!defaultDate.equals("") && !defaultDate.equalsIgnoreCase("0000-00-00")) {
-                String[] date = defaultDate.split("-");
-
-           */
-/* calendar.set(Calendar.YEAR, Integer.parseInt(date[0]));
-            calendar.set(Calendar.MONTH, Integer.parseInt(date[1]));
-            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date[2]));*//*
-
-                calendar.setTime(DataFormats.dateFormatDbDate.parse(defaultDate));
-            }
-            DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    calendar.set(Calendar.MONTH, month);
-                    calendar.set(Calendar.YEAR, year);
-                    myDateSelectedListener.onDateSet(tag, calendar, calendar.getTime());
-                }
-            };
-            DatePickerDialog aDatePickerDialog = new DatePickerDialog(activity, onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
-            if (!minDate.equals("") && !minDate.equalsIgnoreCase("0000-00-00")) {
-                long dateMin = DataFormats.dateFormatDbDate.parse(minDate).getTime();
-                aDatePickerDialog.getDatePicker().setMinDate(dateMin);
-
-            }
-            if (!maxDate.equals("") && !maxDate.equalsIgnoreCase("0000-00-00")) {
-                long dateMax = DataFormats.dateFormatDbDate.parse(maxDate).getTime();
-                aDatePickerDialog.getDatePicker().setMaxDate(dateMax);
-            }
-            ArrayList<View> views = aDatePickerDialog.getDatePicker().getTouchables();
-            if (views != null && views.size() > 0)
-                //aDatePickerDialog.getDatePicker().getTouchables().get(0).performClick();
-                aDatePickerDialog.show();
-
-        } catch (ParseException | java.text.ParseException e) {
-            e.printStackTrace();
-        }
-
-    }
-*/
-
-
-
-/*
-    public static void showTimePicker(Activity activity, final String tag, final MyDateSelectedListener myDateSelectedListener) {
-        Calendar calendar = Calendar.getInstance();
-
-
-        TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                calendar.set(Calendar.MINUTE, minute);
-
-                myDateSelectedListener.onDateSet(tag, calendar, calendar.getTime());
-            }
-        };
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(activity, timeSetListener, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), false);
-        timePickerDialog.show();
-
-
-    }
-*/
 
     public static List<JSONObject> getJSONObjectsList(JSONArray array) {
 

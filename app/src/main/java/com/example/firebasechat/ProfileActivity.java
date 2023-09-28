@@ -51,23 +51,12 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         activity = this;
 
-        database = FirebaseDatabase.getInstance("https://chat-firebase-cd16a-default-rtdb.firebaseio.com/");
+        database = FirebaseDatabase.getInstance("");
         auth = FirebaseAuth.getInstance();
 
         MyPrefs.getInstance(activity, CommonConstants.SHARED_PREF).putBoolean("login", true);
 
         final List<Users> messageModels = new ArrayList<>();
-
-       /* if (messageModels.size()==0){
-
-            binding.noResults.setVisibility(View.VISIBLE);
-            binding.recyclerchat.setVisibility(View.GONE);
-
-        }else {
-            binding.noResults.setVisibility(View.GONE);
-            binding.recyclerchat.setVisibility(View.VISIBLE);
-
-        }*/
 
 
         adapterAllChat = new AdapterChat(this, messageModels, new OnItemViewClickListener() {
@@ -154,47 +143,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-/*
-        database.getReference().child("Users/").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messageModels.clear();
-                List<Users> filteredUsers = new ArrayList<>();
-
-                try {
-
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        Users model = snapshot1.getValue(Users.class);
-
-
-                        if (model != null && !model.getUserId().equals(currentUser)) {
-                            filteredUsers.add(model);
-                            Log.i("checkFirebaseMessage", model.getUserId());
-                            String userId = model.getUserId();
-                            MyPrefs.getInstance(activity,CommonConstants.SHARED_PREF).putString(UserData.KEY_LIST_ID,userId);
-                            model.setUserId(snapshot1.getKey());
-                            messageModels.add(model);
-                        }
-
-                    }
-
-                } catch (Exception e) {
-
-                }
-
-                adapterAllChat.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-*/
 
 
         database.getReference().child("Users/").addValueEventListener(new ValueEventListener() {

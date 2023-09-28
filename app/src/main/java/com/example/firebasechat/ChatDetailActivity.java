@@ -58,7 +58,7 @@ public class ChatDetailActivity extends AppCompatActivity {
 
         activity = this;
 
-        database = FirebaseDatabase.getInstance("https://chat-firebase-cd16a-default-rtdb.firebaseio.com/");
+        database = FirebaseDatabase.getInstance("");
         auth = FirebaseAuth.getInstance();
 
 
